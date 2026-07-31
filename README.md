@@ -5,6 +5,7 @@
 - **Terminal**: kitty
 - **File Manager**: nautilus
 - **Browsers**: firefox
+- **TUI text editor**: nano, nano-syntax-highlighting
 - **TUI**: fastfetch, cava, cmatrix, htop, btop, cava, lavat-git(AUR) , tty-clock-git(AUR), pipes.c(AUR)
 - **fastfetch logo**: figlet, lolcat
 - **Shell**: zsh
