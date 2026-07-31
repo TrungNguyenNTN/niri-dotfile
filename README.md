@@ -10,7 +10,7 @@
 - **Shell**: zsh
 - **Zsh Plugin && config**: git-zsh-completion  grml-zsh-config zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
 - **Zsh theme**: starship
-- **Noctalia**: noctalia-git, evolution-data-server
+- **Noctalia**: noctalia-git(AUR) , evolution-data-server
 
 ## Core Binds
 - Mod + T: Open kitty
