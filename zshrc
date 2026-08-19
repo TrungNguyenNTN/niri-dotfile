@@ -10,6 +10,7 @@ prompt off                  # turn off grml prompt
 eval "$(starship init zsh)" # use starship
 
 # 3. Enable Plugin
+source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh                   # auto suggest on zsh history
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh           # highlight zshsyntax
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh # Search command in zsh history
