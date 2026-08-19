@@ -10,21 +10,23 @@ input {
     keyboard {
         xkb {
         }
+
+        // Enable numlock on startup, omitting this setting disables it.
+        // numlock
     }
 
+    // Next sections include libinput settings.
+    // Omitting settings disables them, or leaves them at their default values.
+    // All commented-out settings here are examples, not defaults.
     touchpad {
         tap
         dwt
         natural-scroll
-        accel-speed 0.1
         scroll-method "two-finger"
     }
 
-    mouse {
-    }
-
-    trackpoint {
-    }
+    mouse { }
+    trackpoint { }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
     // warp-mouse-to-focus
@@ -53,23 +55,24 @@ input {
 layout {
     gaps 8
     center-focused-column "never"
-	always-center-single-column
-	default-column-display "tabbed"
-	background-color "transparent"
+    // always-center-single-column
+    // default-column-display "tabbed"
+    background-color "transparent"
+
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-		proportion 1.0
+        proportion 1.0
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Ctrl+Shift+R) toggles between.
     preset-window-heights {
-	proportion 0.33333
-	proportion 0.5
-	proportion 0.66667
-	proportion 1.0
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
     }
 
     // You can change the default width of the new windows.
@@ -91,61 +94,18 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        off
-		// on
-        // How many logical pixels the ring extends out from the windows.
-        width 4
+        // off
+        on
 
-        // Colors can be set in a variety of ways:
-        // - CSS named colors: "red"
-        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
-        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+        width 2
 
-        // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
-
-        // Color of the ring on inactive monitors.
-        //
-        // The focus ring only draws around the active window, so the only place
-        // where you can see its inactive-color is on other monitors.
-        inactive-color "#505050"
-
-        // You can also use gradients. They take precedence over solid colors.
-        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
-        // The angle is the same as in linear-gradient, and is optional,
-        // defaulting to 180 (top-to-bottom gradient).
-        // You can use any CSS linear-gradient tool on the web to set these up.
-        // Changing the color space is also supported, check the wiki for more info.
-        //
-        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
-
-        // You can also color the gradient relative to the entire view
-        // of the workspace, rather than relative to just the window itself.
-        // To do that, set relative-to="workspace-view".
-        //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        urgent-gradient from="#800" to="#a33" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
-    border {
-        // The settings are the same as for the focus ring.
-        // If you enable the border, you probably want to disable the focus ring.
-        // off
-		on
-		
-        width 2
-        // active-color "#ffc87f"
-        // inactive-color "#505050"
-
-        // Color of the border around windows that request your attention.
-        // urgent-color "#9b0000"
-
-        // Gradients can use a few different interpolation color spaces.
-        // For example, this is a pastel rainbow gradient via in="oklch longer hue".
-        active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view" in="oklch longer hue"
-		inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
-		urgent-gradient from="#800" to="#a33" angle=45 relative-to="workspace-view"
-    }
+    border { off; }
 
     // You can enable drop shadows for windows.
     shadow {
@@ -162,7 +122,7 @@ layout {
         // You can also change the shadow color and opacity.
         color "#00000070"
     }
-    
+
     tab-indicator {
         // off
         on
@@ -172,28 +132,12 @@ layout {
         width 4
         length total-proportion=0.5
         position "bottom"
-        gaps-between-tabs 2
+        gaps-between-tabs 4
         corner-radius 8
-        // active-color "red"
-        // inactive-color "gray"
-        // urgent-color "blue"
-        // active-gradient from="#80c8ff" to="#bbddff" angle=45
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
-        // urgent-gradient from="#800" to="#a33" angle=45
-    }
-    
-    insert-hint {
-        off
-        // on
-        color "#ffc87f80"
-        // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
     }
 
-    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
-    // You can think of them as a kind of outer gaps. They are set in logical pixels.
-    // Left and right struts will cause the next window to the side to always be visible.
-    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
-    // layer-shell panels and regular gaps.
+    insert-hint { off; }
+
     struts {
         // left 64
         // right 64
@@ -208,7 +152,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "fcitx5" "--daemon"
+spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "noctalia" "--daemon"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -219,26 +163,20 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// If the client will specifically ask for CSD, the request will be honored.
-// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
-// This option will also fix border/focus ring drawing behind some semitransparent windows.
-// After enabling or disabling this, you need to restart the apps for this to take effect.
 prefer-no-csd
-
-overview {
-    workspace-shadow {
-	off
-    }
-}
 
 blur {
     // off
-    passes 2
-    offset 3.0
+    passes 1
+    offset 2.0
     noise 0.0
     saturation 1.5
 }
+
+overview {
+    workspace-shadow { off; }
+}
+
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
@@ -251,20 +189,23 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // The wiki explains how to configure individual animations:
 // https://niri-wm.github.io/niri/Configuration:-Animations
 animations {
-	workspace-switch {
+    // Uncomment to turn off all animations.
+    // off
+
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    // slowdown 3.0
+    
+    workspace-switch {
         spring damping-ratio=0.8 stiffness=400 epsilon=0.0001
     }
-
     window-open {
         duration-ms 300
         curve "ease-out-expo"
     }
-
     window-close {
         duration-ms 200
         curve "ease-out-quad"
     }
-
     horizontal-view-movement {
         spring damping-ratio=0.8 stiffness=400 epsilon=0.0001
     }
@@ -334,36 +275,35 @@ window-rule {
     // block-out-from "screencast"
 }
 
+
 // Floating Noctalia settings window.
 window-rule {
-  match app-id="dev.noctalia.Noctalia"
-  open-floating true
-  default-column-width { fixed 810; }
-  default-window-height { fixed 690; }
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 810; }
+    default-window-height { fixed 690; }
 }
 
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
-    geometry-corner-radius 12
+    geometry-corner-radius 20
     clip-to-geometry true
 }
 
 debug {
-  // Allows notification actions and window activation from Noctalia.
-  honor-xdg-activation-with-invalid-serial
+    // Allows notification actions and window activation from Noctalia.
+    honor-xdg-activation-with-invalid-serial
 }
-
 
 /* Apps: blur them all without xray so it looks more realistic. */
 window-rule {
-  background-effect {
-    blur true
-    xray false
-  }
+    background-effect {
+        blur true
+        xray false
+    }
 }
-
 
 /*
   Noctalia
@@ -371,17 +311,34 @@ window-rule {
   Noctalia publishes blur regions automatically when ext-background-effects is available.
 */
 layer-rule {
-  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
-  background-effect {
-    xray false
-    // blur false
-  }
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+        // blur false
+    }
 }
 
+
+/* Enable blur on noctalia's window switcher and disable xray. */
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// Stationary Wallpaper
 // Place the regular wallpaper on the backdrop.
 layer-rule {
-  match namespace="^noctalia-wallpaper"
-  place-within-backdrop true
+    match namespace="^noctalia-wallpaper"
+    place-within-backdrop true
+}
+
+// Blurred Overview Wallpaper
+/-layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
 }
 
 binds {
@@ -430,10 +387,10 @@ binds {
 
     // Example media keys mapping using playerctl.
     // This will work with any MPRIS-enabled media player.
-    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
-    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
-    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "noctalia msg media play"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "noctalia msg media stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "noctalia msg media next"; }
 
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
@@ -545,7 +502,6 @@ binds {
     Mod+TouchpadScrollLeft       cooldown-ms=100 { focus-column-left; }
     Mod+Ctrl+TouchpadScrollRight cooldown-ms=100 { move-column-right; }
     Mod+Ctrl+TouchpadScrollLeft  cooldown-ms=100 { move-column-left; }
-
 
     // Usually scrolling up and down with Shift in applications results in
     // horizontal scrolling; these binds replicate that.
